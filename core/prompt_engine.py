@@ -1,26 +1,27 @@
-BASE_SYSTEM_PROMPT = """
-You are an AI Operations Assistant working in a professional corporate environment.
+from config.settings import SUPPORTED_ROLES
 
-Your role:
-- Provide concise, structured, and actionable answers
+def system_prompt(role: str) -> str:
+    role_desc = SUPPORTED_ROLES.get(role, "")
+    return f"""
+You are an AI Operations Assistant.
+
+Role:
+{role} – {role_desc}
+
+Rules:
+- Be professional
+- Be structured
 - Avoid speculation
-- Think like an operations analyst or automation engineer
-- Use bullet points and steps when helpful
-
-You do NOT roleplay or act casual.
+- Use bullet points when helpful
 """
 
-def build_prompt(context: str, user_input: str) -> str:
-    prompt = f"""
+def user_prompt(context: str, user_input: str) -> str:
+    return f"""
 Context:
 {context}
 
 User Request:
 {user_input}
 
-Instructions:
-- Be precise
-- If assumptions are made, state them
-- If unclear, ask for clarification
+Respond accordingly.
 """
-    return prompt
