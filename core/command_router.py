@@ -1,13 +1,10 @@
-def route_command(user_input: str) -> str:
-    user_input = user_input.lower()
+def route_command(text: str) -> str:
+    text = text.lower()
 
-    if user_input.startswith("/help"):
+    if text.startswith("/help"):
         return "HELP"
-
-    if user_input.startswith("/analyze"):
-        return "ANALYZE"
-
-    if user_input.startswith("/summary"):
-        return "SUMMARY"
-
-    return "GENERAL"
+    if text.startswith("/role"):
+        return "ROLE"
+    if text.startswith("/clear"):
+        return "CLEAR"
+    return "QUERY"
